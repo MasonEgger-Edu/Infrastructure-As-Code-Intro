@@ -19,7 +19,13 @@ provider. The parts are divided up as follows:
 4. Resource Dependencies and a Complete Infrastructure
 
 More about the specific parts can be found in the READMEs in the appropriate
-sections.
+sections. 
+
+Part 1 will also cover some of the more basic principles of Terraform, like
+how to run it, remote state, variable interpolation, etc. For this reason
+you may want to be sure to refer back to it in later sections as each section
+builds on each other and only the parts of the file that changed will be 
+discussed.
 
 **Note** - The structure of this repository is for educational purposes. The 
 layout for these files does not reflect the best practices for laying out
