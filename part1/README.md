@@ -1,7 +1,7 @@
 # Part 1 - Providers, Variables, and Data Sources
 
 This section discusses providers, variables, and data sources. This terraform
-file, when executed, simply prints out the users droplet limit.
+file, when executed, simply prints out the user's droplet limit.
 
 ## Providers
 
@@ -23,6 +23,26 @@ provider digitalocean {
     token = var.do_token
 }
 ```
+## Setting your DigitalOcean Token
+Currently, if you don't set this token when you run the Terraform command you 
+will be asked to input the token into the command line. This can get be 
+cumbersome to do repeatedly so you'll want a place to store this token. There
+are numerous ways to do this, but I prefer storing the token securely somewhere
+and when I need to work on terraform setting it as an environment variable on
+my local machine. If you are using a CI/CD system you would be able to inject
+the token on runtime. 
+
+### Terraform Environment Variables
+Terraform supports the use of environment variables. Any environment variable 
+that is name `TF_VAR_*` will be seen by terraform. So in our case the variable
+that holds our token is `do_token`. So we simply set our do token as such
+
+```
+export TF_VAR_do_token="my_happy_token"
+```
+
+Now whenever we run the terraform command it will pickup our token from the
+environment seamlessly.
 
 ## Input Variables
 
@@ -97,7 +117,7 @@ for clarity.
 Output variables are used to get data back to the user at the end of a state
 execution or to feed into other terraform modules. The code below uses the
 DigitalOcean data source defined above to get the droplet limit of the user
-who is associated with the token that is passed in. If we wanted to look at
+associated with the token that is passed in. If we wanted to look at
 other data associated with the account, we could just lookup what other 
 attribute we want to access in the 
 [documentation](https://www.terraform.io/docs/providers/do/d/account.html).
@@ -141,7 +161,7 @@ simply reads the data you want from this file and outputs it. This state file
 is how terraform knows what to change when you run apply again. If this state
 gets corrupted or deleted terraform will not know how to manage the resources
 that were created with it. Guard the state with your life. For this reason
-you may want to look into 
+you may want to consider 
 [Terraform Cloud](https://www.terraform.io/docs/cloud/index.html) or how to 
 [manage remote state](https://www.terraform.io/docs/state/remote.html)
 
