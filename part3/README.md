@@ -112,6 +112,18 @@ a success *then* it will tear down the old resources.
     }
 ```
 
+## Changing Our Output Variables
+Now that we have the potential for multiple droplets being spun up we need
+to modify our output variable to accommodate for this. We simply add a `*` 
+character between the `<user_defined_variable>` and `<attribute>` as shown 
+below.
+
+```
+output "server_ip" {
+    value = digitalocean_droplet.web.*.ipv4_address
+}
+```
+
 ## Passing in arguments
 Now that our code is setup to accept variables, how do we actually pass
 variables in? There are three ways do this
