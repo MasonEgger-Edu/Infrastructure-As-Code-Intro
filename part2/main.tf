@@ -4,7 +4,7 @@ provider digitalocean {
 }
 
 data "digitalocean_ssh_key" "home" {
-    name = "Home Desktop"
+    name = "Home Desktop WSL"
 }
 
 data "digitalocean_ssh_key" "work" {
