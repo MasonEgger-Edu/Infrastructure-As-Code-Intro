@@ -3,6 +3,7 @@
 
 ## Presentations
 * DigitalOcean Webinar - 1/30/2020
+* Indy Py - 8/13/2020
 
 ## About
 This is an introductory webinar into Infrastructure as Code, specifically
