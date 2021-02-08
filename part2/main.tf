@@ -1,3 +1,11 @@
+terraform {
+    required_providers {
+        digitalocean = {
+            source = "digitalocean/digitalocean"
+        }
+    }
+}
+
 variable do_token {}
 provider digitalocean {
     token = var.do_token
@@ -12,7 +20,7 @@ data "digitalocean_ssh_key" "work" {
 }
 
 resource "digitalocean_droplet" "web" {
-    image = "ubuntu-18-04-x64"
+    image = "ubuntu-20-04-x64"
     name = "web-1"
     region = "nyc3"
     size = "s-1vcpu-1gb"

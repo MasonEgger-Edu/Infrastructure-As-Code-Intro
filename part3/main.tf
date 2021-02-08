@@ -1,10 +1,19 @@
+terraform {
+    required_providers {
+        digitalocean = {
+            source = "digitalocean/digitalocean"
+        }
+    }
+}
+
+
 variable do_token {}
 provider digitalocean {
     token = var.do_token
 }
 
 data "digitalocean_ssh_key" "home" {
-    name = "Home Desktop"
+    name = "Home Desktop WSL"
 }
 
 data "digitalocean_ssh_key" "work" {
@@ -28,7 +37,7 @@ variable "droplet_size" {
 
 resource "digitalocean_droplet" "web" {
     count = var.droplet_count
-    image = "ubuntu-18-04-x64"
+    image = "ubuntu-20-04-x64"
     name = "web-${var.region}-${count.index +1}"
     region = var.region
     size = var.droplet_size
